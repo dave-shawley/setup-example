@@ -29,11 +29,26 @@ If you are really impatient and already have ``setuptools`` and ``virtualenv``
 installed, then run the following commands in a shell and you will be off and
 running::
 
-    prompt$ virtualenv --no-site-packages --quiet env
-    prompt$ source env/bin/activate
-    (env)prompt$ pip --quiet install -r tools.txt
-    (env)prompt$ ls -CF env/bin/hg env/bin/nosetests
-    env/bin/hg*                 env/bin/nosetests*
+    prompt$ make requirements
+    Makefile:86: ...: No such file or directory (1)
+    Creating virtual environment in ...
+    Installing requirements using pip.
+    This make take a few minutes...
+       You are installing ...(2)
+    prompt$
+
+The first time that you run *make*, you will get a warning about including
+*makefile.inc* that you can ignore.  This file is created once the environment
+is set up.  You might also see some warnings about *installing an externally
+hosted file*.  These are also ignorable; they come from installing `dulwich`_.
+
+At this point, you can run a number of useful make targets such as *make test*
+to run unit tests.  *Makefile.inc* mentioned previously is a generated file
+that will proxy commands through to *setup.py* so that you can use targets
+like *make sdist* to generate a source distribution using *setup.py sdist* or
+*make nosetests* to run *nosetests*.  In addition to the conventional *make
+clean* targets, you can run *make shell* to drop into a command shell with
+the virtual environment activated.
 
 Files
 =====
@@ -95,4 +110,4 @@ file that contains separate sections for each of the utilities that use it.
 .. _mercurial: http://mercurial.selenic.com
 .. _hg_git: http://hg-git.github.io
 .. _setuptools_hg: https://pypi.python.org/pypi/setuptools_hg
-
+.. _dulwich: http://www.samba.org/~jelmer/dulwich/
