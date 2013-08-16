@@ -41,15 +41,16 @@ $(ENVDIR):
 	@$(ECHO) "Creating virtual environment in $(ENVDIR)."
 	virtualenv --quiet --prompt="($(PROJECT))" $(ENVDIR)
 
-requirements: $(ENVDIR)/makefile.inc
+requirements: $(ENVDIR)/requirements-installed
 
-$(ENVDIR)/makefile.inc: $(ENVDIR) $(ENVDIR)/requirements.txt
+$(ENVDIR)/requirements-installed: $(ENVDIR) $(ENVDIR)/requirements.txt
 	@$(ECHO) "Installing requirements using pip."
-	@$(ECHO) "This make take a few minutes..."
+	@$(ECHO) "This may take a few minutes..."
 	$(PIP) -q install -r "$(ENVDIR)/requirements.txt"
 	@$(SETUP) --help-commands | \
 	  $(GREP) '^  [a-z]' | $(EGREP) -v '^  (test|clean)\>' | \
 	  $(AWK) '{ printf "%s:\n\t@$$(SETUP) %s\n\n", $$1, $$1 }' > "$@"
+	$(TOUCH) "$@"
 
 $(ENVDIR)/requirements.txt: requirements.txt test-requirements.txt tools.txt
 	@$(SORT) -u $^ | $(GREP) -v '^-' | $(SED) -e 's/#.*$$//' -e '/^ *$$/d' > "$@"
@@ -69,6 +70,7 @@ clean:
 	@$(ECHO) "Removing intermediate files."
 	- $(FIND) . -name '*.py[co]' -delete
 	- $(RM) MANIFEST .coverage nosetests.xml
+	- $(RM) $(ENVDIR)/requirements-installed
 
 mostly-clean mostlyclean: clean
 	@$(ECHO) "Removing cached files and reports."
@@ -83,5 +85,8 @@ maintainer-clean: dist-clean
 	@$(ECHO) "Removing environments."
 	- $(RM) -r env* .tox
 
-include $(ENVDIR)/makefile.inc
+
+.PHONY: $(ENVDIR)/makefile.inc
+
+-include $(ENVDIR)/makefile.inc
 
