@@ -87,9 +87,6 @@ packages that I really cannot develop code without these days.
 -----------
 
 Yet another `pip requirements file`_ that contains my basic SCM environment.
-I use `mercurial`_ for my day-to-day source control, `hg_git`_ to integrate
-against github.com, and `setuptools_hg`_ to integrate setup tools and my
-source control.
 
 *setup.cfg*
 -----------
@@ -107,7 +104,4 @@ file that contains separate sections for each of the utilities that use it.
 .. _nose: https://nose.readthedocs.org/en/latest/usage.html#configuration
 .. _pytest: http://pytest.org/latest/customize.html
 .. _flake8: http://flake8.readthedocs.org/en/latest/config.html
-.. _mercurial: http://mercurial.selenic.com
-.. _hg_git: http://hg-git.github.io
-.. _setuptools_hg: https://pypi.python.org/pypi/setuptools_hg
 .. _dulwich: http://www.samba.org/~jelmer/dulwich/
