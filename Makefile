@@ -39,7 +39,8 @@ environment: $(ENVDIR)
 
 $(ENVDIR):
 	@$(ECHO) "Creating virtual environment in $(ENVDIR)."
-	virtualenv --quiet --prompt="($(PROJECT))" $(ENVDIR)
+	if python -mvirtualenv --help 2>&1 >/dev/null; then python -mvirtualenv $(ENVDIR) ; \
+	else python -mvenv $(ENVDIR); fi
 
 requirements: $(ENVDIR)/requirements-installed
 
