@@ -55,7 +55,7 @@ Files
 
 Now that we have that out of the way, let's talk through the various files.
 There are only a handful of them that really matter.  The python files in
-the *replace_me* and *tests* directories are pretty worthless but they are
+the *packagename* and *tests* directories are pretty worthless but they are
 required to make the whole package work.
 
 *setup.py*

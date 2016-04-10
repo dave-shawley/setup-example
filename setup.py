@@ -41,7 +41,7 @@ setup(
     url='http://github.com/dave-shawley/setup-example/',
     description='Simple example of using Python toolchain',
     long_description=readme,
-    py_modules=['replace_me'],
+    packages=['packagename'],
     zip_safe=False,
     include_package_data=True,
     platforms='any',
