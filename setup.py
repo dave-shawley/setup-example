@@ -2,6 +2,8 @@
 
 from setuptools import setup
 
+import packagename
+
 
 def read_requirements(req_file):
     reqs = []
@@ -34,7 +36,7 @@ f.close()
 # let setuptools.setup do the real work
 setup(
     name='Setup-Example',
-    version='1',
+    version=packagename.__version__,
     license='BSD',
     author='Dave Shawley',
     author_email='daveshawley@gmail.com',
