@@ -35,7 +35,7 @@ f.close()
 
 # let setuptools.setup do the real work
 setup(
-    name='Setup-Example',
+    name='package-name',
     version=packagename.__version__,
     license='BSD',
     author='Dave Shawley',
